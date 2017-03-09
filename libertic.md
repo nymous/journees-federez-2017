@@ -2,7 +2,7 @@ Libertic
 ========
 
 
-libertic.wordpress.com
+https://libertic.wordpress.com/
 
 Ouverture des données publiques des villes de moins de 35k habitants
 
@@ -13,6 +13,7 @@ Ils ont organisé un truc avec la Poste, pour avoir un retour d'exp sur l'open d
 ## Open Data & OSS : même combat
 
 Récemment, il y a eu une ouverture de la base de données des adresses postales (avant la Poste avait un bout, l'IGN en avait un autre, y'avait des trous...)
+
 Il y a des règles à respecter et des licences
 
 ## Historique
@@ -57,6 +58,7 @@ Licences ouverte (Open licence) ou ODbl
 ## Économique
 
 Peu ou pas de redevance tarifaire
+
 Les données sont une matière première, elles sont une condition pour innover facilement
 
 ## Limitations
@@ -75,18 +77,20 @@ Données numériques NON nominatives
 
 ## Qu'est-ce qu'on en fait ?
 
-Consultation (data.gouv.fr)
-Médiation (comment donner du sens à la donnée) -> étude de Libération sur comment est réparti le budget de l'État
-Applications : ex V³ Predict', disponibilité prévisionnelle (H +12h) des vlib à Bordeaux à partir des data sur 4 ans (à partir de l'historique des stations, de la météo et du jour de la semaine)
-Mobilité du Grand Lyon : (j'ai pas suivi)
-SNCF : ils ont collaboré avec OSM pour localiser les gares, les données des TER ont toujours été en open data avec des API... maintenant ils ont fait une API pour tous leurs trucs, mais ils ont peur que Google (ou d'autres) utilisent leurs données pour vendre des billets aux gens, et qu'ils coupent les clients de la SNCF qui se ferait dicter ses politiques tarifaires par Google -> modèle freemium (peu de requêtes -> c'est gratuit, plus -> c'est payant)
+- Consultation (data.gouv.fr)
+- Médiation (comment donner du sens à la donnée) -> étude de Libération sur comment est réparti le budget de l'État
+- Applications : ex V³ Predict', disponibilité prévisionnelle (H +12h) des vlib à Bordeaux à partir des data sur 4 ans (à partir de l'historique des stations, de la météo et du jour de la semaine)
+- Mobilité du Grand Lyon : (j'ai pas suivi)
+- SNCF : ils ont collaboré avec OSM pour localiser les gares, les données des TER ont toujours été en open data avec des API... maintenant ils ont fait une API pour tous leurs trucs, mais ils ont peur que Google (ou d'autres) utilisent leurs données pour vendre des billets aux gens, et qu'ils coupent les clients de la SNCF qui se ferait dicter ses politiques tarifaires par Google -> modèle freemium (peu de requêtes -> c'est gratuit, plus -> c'est payant)
 
 La data c'est de la matière première et une ressource stratégique !
 
 ## De l'industrie à la distribution de data
 
 Enedis (réparateur de câbles électriques) a les données de conso depuis 1948
+
 En open data, on a accès aux données de conso au niveau de la maille IRIS (20k hab)(plus précis ça devient des données perso, et il faut le consentement de l'utilisateur)
+
 -> ils ont maintenant un 2è métier : fournisseur de données et API, + gestion des autorisations personnelles
 
 On peut aller voir sur leur portail

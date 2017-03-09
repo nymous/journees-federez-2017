@@ -2,11 +2,13 @@ Gestion personnalisée de paquets Debian
 =======================================
 
 AAAAAAAAAAAAAAAAAH C'EST TROP BIEN
+
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH C'EST MÉGA TROP BIEN LE PLAN PUTAIN
 
 ## Introduction rapide
 
 Debian c'est quoi ?
+
 Distrib linux avec :
   
   - Système d'installation + gestionnaire de paquets
@@ -19,12 +21,12 @@ Projet :
   - Contrat social et principes du logiciel libre (DFSG)(debian.org/social_contract)
   - Assurance qualité : charte Debian (debian.org/doc/debian-policy)
 
-Cyril Brulebois
-Développeur Debian
-Responsable de publication du Debian Installer (le setup au début)
+>Cyril Brulebois  
+>Développeur Debian  
+>Responsable de publication du Debian Installer (le setup au début)
 
-Consultant logiciel libre (Debamax) (debamax.com)
-Membre de l'assocation CapLibre (caplibre.fr)
+>Consultant logiciel libre (Debamax) (debamax.com)  
+>Membre de l'assocation CapLibre (caplibre.fr)
 
 ## Paquets, dépôt, comment ça marche ?
 
@@ -34,20 +36,20 @@ Dans un paquet :
 
   - Méta-données : nom, version, dépendances, conflits, description...
   - Contenu : des répertoires, des fichiers (pas que des sources)
-  - Scripts: : exécutés à l'installation, la mise à jour, la suppression...
+  - Scripts : exécutés à l'installation, la mise à jour, la suppression...
 
 Gestionnaire de paquets
 
   - Outls bas niveau
     - `.deb` -> `dpkg`
     - `.rpm` -> `rpm`
-  Outils haut niveau
+  - Outils haut niveau
     - `apt`, `aptitude`...
 
-Inspections un paquet : `dpkg --info package.deb`
-Extraire un fichier : `dpkg --control package.deb`
-Contenu du paquet : `dpkg -- contents package.deb`
-Extraction sans installation : `dpkg --extract package.deb dest/`
+- Inspections un paquet : `dpkg --info package.deb`
+- Extraire un fichier : `dpkg --control package.deb`
+- Contenu du paquet : `dpkg -- contents package.deb`
+- Extraction sans installation : `dpkg --extract package.deb dest/`
 
 La charte Debian **oblige** à avoir de la doc et surtout un changelog
 
@@ -60,8 +62,12 @@ On peut consulter le cache de `apt` :
   - `apt showpkg <pkg>`
 
 `apt` se gère avec un fichier `sources.list`
-(conf minimale : `deb http://ftp.fr.debian.org/debian jessie main`)
-(conf plus complète : 
+
+conf minimale :
+```
+deb http://ftp.fr.debian.org/debian jessie main
+```
+conf plus complète : 
 ```
 deb     http://ftp.fr.debian.org/debian jessie main contrib non-free
 deb-src http://ftp.fr.debian.org/debian jessie main
@@ -72,7 +78,6 @@ deb-src http://ftp.fr.debian.org/debian jessie-backports main
 deb     http://security.debian.org/debian jessie/updates
 deb-src http://security.debian.org/debian jessie/updates
 ```
-)
 
 Mise à jour du cache : `apt-get upadte`
 On récupère un fichier `Release.gpg` pour vérifier que ça a bien été publié par des gens en qui on a confiance
@@ -103,6 +108,7 @@ Préréquis/recommandations :
 ### Exemple
 
 Récupération d'un paquet source : `apt-get source <pkg>` (si on a la ligne `deb-src`)
+
 Un paquet source = un `dsc` (liste de l'ensemble des fichiers contenus dans le paquet), un `tar` (les fichiers) et un `debian/diff` (les modifs faites par un mainteneur debian)
 
   1. Installer les dépendances de compilation d'un paquet : `apt-get build-dep <pkg>`
@@ -123,6 +129,7 @@ Problème de tout ça :
 ### Outils de développement et de déploiement d'app
 
 Solution 1 : VM (yolo, un peu overkill)
+
 Solution 2 : `chroot` pour créer un système minimal dans un sous-répertoire, dans lequel on installe les outils de compilation sans conséquences sur le système hôte
 
 Exemple :
@@ -162,7 +169,7 @@ Solution 4 : `sbuild` qui s'appuie sur `schroot`, mais automatise encore plus
   - `sbuild` (lancement de compilation dans un chroot donné, installation automatique des build-depends, et nettoyage à la fin)
   - c'est l'outil utilisé sur le réseau de build daemons de Debian
 
-Solution alternative : `pbuilder`
+Solution alternative : `pbuilder`  
 Solution alternative : `cowbuilder`
 
 ## Gestion du déploiement : création d'un dépôt
@@ -171,16 +178,16 @@ Solutions :
 
 ### `apt-ftparchive`
 
-Remplaçant de `dpkg-scanpackages` et `dpkg-scansources`
-Pas de `dist/` et de `pool/`, au contraire d'un dépôt normal -> syntaxe particulière pour sources.list
+Remplaçant de `dpkg-scanpackages` et `dpkg-scansources`  
+Pas de `dist/` et de `pool/`, au contraire d'un dépôt normal -> syntaxe particulière pour sources.list  
 Manuel et lent
 
 ### `reprepro`
 
-Gère des dépôts de taille importante (genre debian)
-Fait des manipulation par distro, architecture, paquet source...
-Suivi fait via une BDD
-Peut synchroniser depuis un dépôt distant, de filtrer les paquets...
+Gère des dépôts de taille importante (genre debian)  
+Fait des manipulation par distro, architecture, paquet source...  
+Suivi fait via une BDD  
+Peut synchroniser depuis un dépôt distant, de filtrer les paquets...  
 Création d'instantanés (snapshot) pour figer un environnement de production
 
 Crée la bonne structure de dépôt, met à jour les indices `Packages`, le fichier `Release` (et le signe)...
@@ -194,5 +201,5 @@ Croiser deux mondes :
 
 -> `jenkins-debian-glue` (jenkins-debian-glue.org)
 
-Inconvénient : un dépôt par paquet plutôt qu'un dépôt global
+Inconvénient : un dépôt par paquet plutôt qu'un dépôt global  
 -> Solution : on modifie le job `reprepo` pour n'en avor qu'un seul, et dans tous les job `binaries` on pointe vers cet unique `reprepo`
